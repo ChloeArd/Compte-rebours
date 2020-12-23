@@ -49,6 +49,12 @@ h1{
     font-size: 15px;
 }
 
+#input1{
+    border: none;
+    font-size: 60px;
+    margin-left: 70px;
+}
+
 #changeTime{
     font-size: 60px;
 }
