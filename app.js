@@ -144,8 +144,22 @@ let hours = document.getElementById("heures");
 let minutes = document.getElementById("minutes");
 let seconds =  document.getElementById("secondes");
 
+//Bouton permettant de démarrer le compte à rebours et de faire apparaitre 2 boutons
 document.getElementById("demarrer").addEventListener("click",function (){
     document.getElementById("reset").style.display = "block";
-    document.getElementById("pause-continue").style.display = "block"
+    document.getElementById("pause-continue").style.display = "block";
+    document.getElementById("demarrer").style.display = "none";
+
 });
+
+//Bouton qui rénitialise le compte à rebours
+document.getElementById("reset").addEventListener("click", function (){
+    document.getElementById("reset").style.display = "none";
+    document.getElementById("pause-continue").style.display = "none";
+    document.getElementById("demarrer").style.display = "block";
+
+    hours.innerHTML = "00";
+    minutes.innerHTML = "00";
+    seconds.innerHTML = "00";
+})
 
