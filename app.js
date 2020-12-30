@@ -175,18 +175,9 @@ document.getElementById("demarrer").addEventListener("click",function (){
 });
 
 //Bouton qui rénitialise le compte à rebours
-document.getElementById("reset").addEventListener("click", function (){
-    document.getElementById("reset").style.display = "none";
-    document.getElementById("pause").style.display = "none";
-    document.getElementById("continue").style.display = "none";
-    document.getElementById("demarrer").style.display = "block";
-
-    hours.innerHTML = "00";
-    minutes.innerHTML = "00";
-    seconds.innerHTML = "00";
-
-    clearTimeout(timeoutID);
-})
+document.getElementById("reset").onclick = function (){
+    location.reload();
+};
 
 //Bouton qui met en pause le compte à rebours et affiche le bouton continue
 document.getElementById("pause").addEventListener("click", function (){
