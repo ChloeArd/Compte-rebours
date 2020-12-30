@@ -135,3 +135,17 @@ document.getElementById("basSecondes").addEventListener("click", function (){
     //valeursHauteTime(60, "secondes");
 });
 
+//Compte à rebours commence quand on appuie sur le bouton démarrer
+let chrono = document.getElementById("changeTime");
+let aujourdhui = new Date();
+console.log(aujourdhui);
+
+let hours = document.getElementById("heures");
+let minutes = document.getElementById("minutes");
+let seconds =  document.getElementById("secondes");
+
+document.getElementById("demarrer").addEventListener("click",function (){
+    document.getElementById("reset").style.display = "block";
+    document.getElementById("pause-continue").style.display = "block"
+});
+

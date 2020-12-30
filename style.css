@@ -12,7 +12,7 @@ html {
 body {
     width: 100%;
     font-family: 'Rubik', sans-serif;
-    background-color: darkcyan;
+    background-color: lightblue;
 }
 
 #container{
@@ -36,7 +36,7 @@ h1{
 
 #hautHeures, #hautMinutes, #hautSecondes, #basHeures, #basMinutes, #basSecondes{
     border: none;
-    background-color: darkcyan;
+    background-color: lightblue;
     color: white;
     margin-left: 40px;
     margin-right: 40px;
@@ -67,7 +67,12 @@ h1{
 }
 
 #demarrer{
-    background-color: lightgreen;
+    background-color: lightseagreen;
     font-size: 30px;
     border-radius: 10px 10px;
+}
+
+#reset, #pause-continue{
+    display: none;
+    background-color: red;
 }
