@@ -142,6 +142,7 @@ let seconds =  document.getElementById("secondes");
 let timeoutID;
 console.log(ajoutMinutes);
 
+//Compte à rebours
 let countUp = function() {
     timeoutID = setInterval(function (){
         if (ajoutSeconde < 11){
@@ -152,7 +153,7 @@ let countUp = function() {
             seconds.innerHTML = (ajoutSeconde -= 1);
         }
 
-        if (ajoutMinutes=== 0 && ajoutSeconde === -1){
+        if (ajoutMinutes === 0 && ajoutHeures === 0 && ajoutSeconde === -1){
             ajoutSeconde = 0;
             secondes.innerHTML = "00";
         }
@@ -160,10 +161,31 @@ let countUp = function() {
         if (ajoutSeconde === -1){
             ajoutSeconde = 59;
             seconds.innerHTML = "59";
+            if (ajoutMinutes < 11){
+                minutes.innerHTML = "0" + (ajoutMinutes -= 1);
+            }
+
+            else if (10 >= ajoutMinutes <= 60){
+                minutes.innerHTML = (ajoutMinutes -= 1);
+            }
+
+            if (ajoutMinutes === -1){
+                ajoutMinutes = 59;
+                minutes.innerHTML = "59";
+                if (ajoutHeures < 11){
+                    hours.innerHTML = "0" + (ajoutHeures -= 1);
+                }
+
+                else if (10 >= ajoutHeures <= 100){
+                    hours.innerHTML = (ajoutHeures -= 1);
+                }
+
+                if (ajoutHeures === -1){
+                    ajoutHeures = 99;
+                    hours.innerHTML = "99";
+                }
+            }
         }
-
-
-    //seconds.innerHTML = (decompteSecondes -= 1);
     }, 1000);
 };
 
