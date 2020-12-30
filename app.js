@@ -139,17 +139,33 @@ let hours = document.getElementById("heures");
 let minutes = document.getElementById("minutes");
 let seconds =  document.getElementById("secondes");
 
-let decompteSecondes = document.getElementById("secondes").innerHTML;
 let timeoutID;
+console.log(ajoutMinutes);
 
 let countUp = function() {
     timeoutID = setInterval(function (){
-        decompteSecondes--;
-        seconds.innerHTML = decompteSecondes;
-        console.log("le decompte est de " + decompteSecondes);
+        if (ajoutSeconde < 11){
+            seconds.innerHTML = "0" + (ajoutSeconde -= 1);
+        }
+
+        else if (10 >= ajoutSeconde <= 60){
+            seconds.innerHTML = (ajoutSeconde -= 1);
+        }
+
+        if (ajoutMinutes=== 0 && ajoutSeconde === -1){
+            ajoutSeconde = 0;
+            secondes.innerHTML = "00";
+        }
+
+        if (ajoutSeconde === -1){
+            ajoutSeconde = 59;
+            seconds.innerHTML = "59";
+        }
+
+
+    //seconds.innerHTML = (decompteSecondes -= 1);
     }, 1000);
 };
-
 
 //Bouton permettant de démarrer le compte à rebours et de faire apparaitre 2 boutons
 document.getElementById("demarrer").addEventListener("click",function (){
@@ -158,9 +174,7 @@ document.getElementById("demarrer").addEventListener("click",function (){
     document.getElementById("continue").style.display = "none";
     document.getElementById("demarrer").style.display = "none";
 
-    setTimeout(function (){
-        countUp();
-    },1000);
+    countUp();
 });
 
 //Bouton qui rénitialise le compte à rebours
@@ -173,6 +187,10 @@ document.getElementById("reset").addEventListener("click", function (){
     hours.innerHTML = "00";
     minutes.innerHTML = "00";
     seconds.innerHTML = "00";
+
+    decompteSecondes = document.getElementById("secondes").innerHTML;
+    clearTimeout(timeoutID);
+
 })
 
 let stopCountUp = function() {
