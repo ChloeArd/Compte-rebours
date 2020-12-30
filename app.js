@@ -188,15 +188,11 @@ document.getElementById("reset").addEventListener("click", function (){
     clearTimeout(timeoutID);
 })
 
-let stopCountUp = function() {
-    clearTimeout(timeoutID);
-};
-
 //Bouton qui met en pause le compte à rebours et affiche le bouton continue
 document.getElementById("pause").addEventListener("click", function (){
     document.getElementById("continue").style.display = "block";
     document.getElementById("pause").style.display = "none";
-    stopCountUp();
+    clearTimeout(timeoutID);
 })
 
 //Bouton qui permet de continuer le compte à rebours après une mise en pause et affiche le bouton pause
