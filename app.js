@@ -135,11 +135,21 @@ document.getElementById("basSecondes").addEventListener("click", function (){
     //valeursHauteTime(60, "secondes");
 });
 
-let aujourdhui = new Date();
-
 let hours = document.getElementById("heures");
 let minutes = document.getElementById("minutes");
 let seconds =  document.getElementById("secondes");
+
+let decompteSecondes = document.getElementById("secondes").innerHTML;
+let timeoutID;
+
+let countUp = function() {
+    timeoutID = setInterval(function (){
+        decompteSecondes--;
+        seconds.innerHTML = decompteSecondes;
+        console.log("le decompte est de " + decompteSecondes);
+    }, 1000);
+};
+
 
 //Bouton permettant de démarrer le compte à rebours et de faire apparaitre 2 boutons
 document.getElementById("demarrer").addEventListener("click",function (){
@@ -148,13 +158,9 @@ document.getElementById("demarrer").addEventListener("click",function (){
     document.getElementById("continue").style.display = "none";
     document.getElementById("demarrer").style.display = "none";
 
-    seconds--;
-    if (seconds === 59){
-        seconds.innerHTML = "00";
-        minutes--;
-    }
-
-    seconds.innerHTML= (seconds / 60);
+    setTimeout(function (){
+        countUp();
+    },1000);
 });
 
 //Bouton qui rénitialise le compte à rebours
@@ -169,12 +175,20 @@ document.getElementById("reset").addEventListener("click", function (){
     seconds.innerHTML = "00";
 })
 
+let stopCountUp = function() {
+    clearTimeout(timeoutID);
+};
+
+//Bouton qui met en pause le compte à rebours et affiche le bouton continue
 document.getElementById("pause").addEventListener("click", function (){
     document.getElementById("continue").style.display = "block";
     document.getElementById("pause").style.display = "none";
+    stopCountUp();
 })
 
+//Bouton qui permet de continuer le compte à rebours après une mise en pause et affiche le bouton pause
 document.getElementById("continue").addEventListener("click", function () {
     document.getElementById("continue").style.display = "none";
     document.getElementById("pause").style.display = "block";
+    countUp();
 })
