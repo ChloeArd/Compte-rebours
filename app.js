@@ -135,10 +135,7 @@ document.getElementById("basSecondes").addEventListener("click", function (){
     //valeursHauteTime(60, "secondes");
 });
 
-//Compte à rebours commence quand on appuie sur le bouton démarrer
-let chrono = document.getElementById("changeTime");
 let aujourdhui = new Date();
-console.log(aujourdhui);
 
 let hours = document.getElementById("heures");
 let minutes = document.getElementById("minutes");
@@ -147,15 +144,24 @@ let seconds =  document.getElementById("secondes");
 //Bouton permettant de démarrer le compte à rebours et de faire apparaitre 2 boutons
 document.getElementById("demarrer").addEventListener("click",function (){
     document.getElementById("reset").style.display = "block";
-    document.getElementById("pause-continue").style.display = "block";
+    document.getElementById("pause").style.display = "block";
+    document.getElementById("continue").style.display = "none";
     document.getElementById("demarrer").style.display = "none";
 
+    seconds--;
+    if (seconds === 59){
+        seconds.innerHTML = "00";
+        minutes--;
+    }
+
+    seconds.innerHTML= (seconds / 60);
 });
 
 //Bouton qui rénitialise le compte à rebours
 document.getElementById("reset").addEventListener("click", function (){
     document.getElementById("reset").style.display = "none";
-    document.getElementById("pause-continue").style.display = "none";
+    document.getElementById("pause").style.display = "none";
+    document.getElementById("continue").style.display = "none";
     document.getElementById("demarrer").style.display = "block";
 
     hours.innerHTML = "00";
@@ -163,3 +169,12 @@ document.getElementById("reset").addEventListener("click", function (){
     seconds.innerHTML = "00";
 })
 
+document.getElementById("pause").addEventListener("click", function (){
+    document.getElementById("continue").style.display = "block";
+    document.getElementById("pause").style.display = "none";
+})
+
+document.getElementById("continue").addEventListener("click", function () {
+    document.getElementById("continue").style.display = "none";
+    document.getElementById("pause").style.display = "block";
+})

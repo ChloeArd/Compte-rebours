@@ -68,11 +68,17 @@ h1{
 
 #demarrer{
     background-color: lightseagreen;
-    font-size: 30px;
+    font-size: 35px;
     border-radius: 10px 10px;
 }
 
-#reset, #pause-continue{
+#reset, #pause, #continue{
     display: none;
+    font-size: 30px;
     background-color: red;
+    border-radius: 10px 10px;
+}
+
+#continue{
+    background-color: greenyellow;
 }
