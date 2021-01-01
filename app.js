@@ -1,5 +1,3 @@
-//Le compte a rebours doit être un objet instanciable
-
 let hours = document.getElementById("heures");
 let minutes = document.getElementById("minutes");
 let seconds =  document.getElementById("secondes");
