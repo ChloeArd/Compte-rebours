@@ -1,5 +1,5 @@
-//Le compte a rebours doit être un objet instanciable
-function compteARebours (hours, minutes, seconds){
+// The countdown is an instantiable object
+let compteARebours = function (hours, minutes, seconds){
     this.hoursTime = hours;
     this.minutesTime = minutes;
     this.secondsTime = seconds;
@@ -10,154 +10,81 @@ function compteARebours (hours, minutes, seconds){
         let minutes = document.getElementById("minutes");
         let seconds = document.getElementById("secondes");
 
-//Permettre à l'utilisateur de spécifier un temps personnalisé
-//incrémenter de 1 a chaque fois que je clique sur le bouton "hautHeures" !
-        let ajoutHeures = this.hoursTime;
-        hours.innerHTML = ajoutHeures;
-        if (ajoutHeures < 9) {
-            hours.innerHTML = "0" + ajoutHeures;
+        // Allow the user to specify a personalized time
+        // increment by 1 each time I click on the "hautHeures" button!
+        let addHours = this.hoursTime;
+        hours.innerHTML = addHours;
+        if (addHours < 9) {
+            hours.innerHTML = "0" + addHours;
         }
-        document.getElementById("hautHeures").addEventListener("click", function () {
-            setTimeout(function () {
-                if (ajoutHeures < 9) {
-                    hours.innerHTML = "0" + (ajoutHeures += 1);
-                } else if (10 >= ajoutHeures <= 100) {
-                    hours.innerHTML = (ajoutHeures += 1);
-                }
 
-                if (ajoutHeures === 100) {
-                    ajoutHeures = 0;
-                    hours.innerHTML = "00";
-                }
-            }, 500);
-        });
+        add("hautHeures", addHours, 10, 100, hours);
 
-        let ajoutMinutes = this.minutesTime;
-        minutes.innerHTML = ajoutMinutes;
-        if (ajoutMinutes < 9) {
-            minutes.innerHTML = "0" + ajoutMinutes;
+        let addMinutes = this.minutesTime;
+        minutes.innerHTML = addMinutes;
+        if (addMinutes < 9) {
+            minutes.innerHTML = "0" + addMinutes;
         }
-//incrémenter de 1 a chaque fois que je clique sur le bouton "hautMinutes" !
-        document.getElementById("hautMinutes").addEventListener("click", function () {
-            setTimeout(function () {
-                if (ajoutMinutes < 9) {
-                    minutes.innerHTML = "0" + (ajoutMinutes += 1);
-                } else if (10 >= ajoutMinutes <= 60) {
-                    minutes.innerHTML = (ajoutMinutes += 1);
-                }
 
-                if (ajoutMinutes === 60) {
-                    ajoutMinutes = 0;
-                    minutes.innerHTML = "00";
-                }
-            }, 500);
-        });
+        // increment by 1 each time I click on the "hautMinutes" button!
+        add("hautMinutes", addMinutes, 10, 60, minutes);
 
-        let ajoutSeconde = this.secondsTime;
-        seconds.innerHTML = ajoutSeconde;
-        if (ajoutSeconde < 9) {
-            seconds.innerHTML = "0" + ajoutSeconde;
+        let addSeconde = this.secondsTime;
+        seconds.innerHTML = addSeconde;
+        if (addSeconde < 9) {
+            seconds.innerHTML = "0" + addSeconde;
         }
-//incrémenter de 1 a chaque fois que je clique sur le bouton "hautSecondes" !
-        document.getElementById("hautSecondes").addEventListener("click", function () {
-            setTimeout(function () {
-                if (ajoutSeconde < 9) {
-                    seconds.innerHTML = "0" + (ajoutSeconde += 1);
-                } else if (10 >= ajoutSeconde <= 60) {
-                    seconds.innerHTML = (ajoutSeconde += 1);
-                }
 
-                if (ajoutSeconde === 60) {
-                    ajoutSeconde = 0;
-                    seconds.innerHTML = "00";
-                }
-            }, 500);
-        });
+        // increment by 1 each time I click on the "hautSecondes" button!
+        add("hautSecondes", addSeconde, 10, 60, seconds);
 
-//Décrémenter de 1 a chaque fois que je clique sur le bouton "basHeures" !
-        document.getElementById("basHeures").addEventListener("click", function () {
-            setTimeout(function () {
-                if (ajoutHeures < 11) {
-                    hours.innerHTML = "0" + (ajoutHeures -= 1);
-                } else if (10 >= ajoutHeures <= 100) {
-                    hours.innerHTML = (ajoutHeures -= 1);
-                }
+        // Decrement by 1 each time I click on the "basHeures" button!
+        less("basHeures", addHours, 10, 100, hours, 99, "99");
 
-                if (ajoutHeures === -1) {
-                    ajoutHeures = 99;
-                    hours.innerHTML = "99";
-                }
-            }, 500);
-        });
+        // Decrement by 1 each time I click on the "basMinutes" button!
+        less("basMinutes", addMinutes, 10, 60, minutes, 59, "59");
 
-//Décrémenter de 1 a chaque fois que je clique sur le bouton "basMinutes" !
-        document.getElementById("basMinutes").addEventListener("click", function () {
-            setTimeout(function () {
-                if (ajoutMinutes < 11) {
-                    minutes.innerHTML = "0" + (ajoutMinutes -= 1);
-                } else if (10 >= ajoutMinutes <= 60) {
-                    minutes.innerHTML = (ajoutMinutes -= 1);
-                }
-
-                if (ajoutMinutes === -1) {
-                    ajoutMinutes = 59;
-                    minutes.innerHTML = "59";
-                }
-            }, 500);
-        });
-
-//Décrémenter de 1 a chaque fois que je clique sur le bouton "basSecondes" !
-        document.getElementById("basSecondes").addEventListener("click", function () {
-            setTimeout(function () {
-                if (ajoutSeconde < 11) {
-                    seconds.innerHTML = "0" + (ajoutSeconde -= 1);
-                } else if (10 >= ajoutSeconde <= 60) {
-                    seconds.innerHTML = (ajoutSeconde -= 1);
-                }
-
-                if (ajoutSeconde === -1) {
-                    ajoutSeconde = 59;
-                    seconds.innerHTML = "59";
-                }
-            }, 500);
-        });
+        // Decrement by 1 each time I click on the "basSecondes" button!
+        less("basSecondes", addSeconde, 10, 60, seconds, 59, "59");
 
         let timeoutID;
 
-//Compte à rebours
+        // Countdown
         let countUp = function () {
             timeoutID = setInterval(function () {
-                if (ajoutSeconde < 11) {
-                    seconds.innerHTML = "0" + (ajoutSeconde -= 1);
-                } else if (10 >= ajoutSeconde <= 60) {
-                    seconds.innerHTML = (ajoutSeconde -= 1);
+                if (addSeconde < 11) {
+                    seconds.innerHTML = "0" + (addSeconde -= 1);
+                }
+                else if (10 >= addSeconde <= 60) {
+                    seconds.innerHTML = (addSeconde -= 1);
                 }
 
-                if (ajoutMinutes === 0 && ajoutHeures === 0 && ajoutSeconde === -1) {
-                    ajoutSeconde = 0;
+                if (addMinutes === 0 && addHours === 0 && addSeconde === -1) {
+                    addSeconde = 0;
                     seconds.innerHTML = "00";
                 }
 
-                if (ajoutSeconde === -1) {
-                    ajoutSeconde = 59;
+                if (addSeconde === -1) {
+                    addSeconde = 59;
                     seconds.innerHTML = "59";
-                    if (ajoutMinutes < 11) {
-                        minutes.innerHTML = "0" + (ajoutMinutes -= 1);
-                    } else if (10 >= ajoutMinutes <= 60) {
-                        minutes.innerHTML = (ajoutMinutes -= 1);
+                    if (addMinutes < 11) {
+                        minutes.innerHTML = "0" + (addMinutes -= 1);
+                    }
+                    else if (10 >= addMinutes <= 60) {
+                        minutes.innerHTML = (addMinutes -= 1);
                     }
 
-                    if (ajoutMinutes === -1) {
-                        ajoutMinutes = 59;
+                    if (addMinutes === -1) {
+                        addMinutes = 59;
                         minutes.innerHTML = "59";
-                        if (ajoutHeures < 11) {
-                            hours.innerHTML = "0" + (ajoutHeures -= 1);
-                        } else if (10 >= ajoutHeures <= 100) {
-                            hours.innerHTML = (ajoutHeures -= 1);
+                        if (addHours < 11) {
+                            hours.innerHTML = "0" + (addHours -= 1);
+                        } else if (10 >= addHours <= 100) {
+                            hours.innerHTML = (addHours -= 1);
                         }
 
-                        if (ajoutHeures === -1) {
-                            ajoutHeures = 99;
+                        if (addHours === -1) {
+                            addHours = 99;
                             hours.innerHTML = "99";
                         }
                     }
@@ -165,7 +92,7 @@ function compteARebours (hours, minutes, seconds){
             }, 1000);
         };
 
-//Bouton permettant de démarrer le compte à rebours et de faire apparaitre 2 boutons
+        // Button used to start the countdown and to display 2 buttons
         document.getElementById("demarrer").addEventListener("click", function () {
             document.getElementById("reset").style.display = "block";
             document.getElementById("pause").style.display = "block";
@@ -174,19 +101,19 @@ function compteARebours (hours, minutes, seconds){
             countUp();
         });
 
-//Bouton qui rénitialise le compte à rebours
+        // Button that refreshes the page to reset the countdown
         document.getElementById("reset").onclick = function () {
             location.reload();
         };
 
-//Bouton qui met en pause le compte à rebours et affiche le bouton continue
+        // Button that pauses the countdown and displays the continue button
         document.getElementById("pause").addEventListener("click", function () {
             document.getElementById("continue").style.display = "block";
             document.getElementById("pause").style.display = "none";
             clearTimeout(timeoutID);
         })
 
-//Bouton qui permet de continuer le compte à rebours après une mise en pause et affiche le bouton pause
+        // Button that allows you to continue the countdown after a pause and displays the pause button
         document.getElementById("continue").addEventListener("click", function () {
             document.getElementById("continue").style.display = "none";
             document.getElementById("pause").style.display = "block";
@@ -198,4 +125,40 @@ function compteARebours (hours, minutes, seconds){
 let compteARebours1 = new compteARebours(0,1,0);
 compteARebours1.chrono();
 
-console.log(compteARebours1);
+// Increment the time by 1 by clicking on a button
+function add (idClick, addTime, numberLimit1, numberLimit2, time ) {
+    document.getElementById(idClick).addEventListener("click", function () {
+        setTimeout(function () {
+            if (addTime < 9) {
+                time.innerHTML = "0" + (addTime += 1);
+            }
+            else if (numberLimit1 >= addTime <= numberLimit2) {
+                time.innerHTML = (addTime += 1);
+            }
+
+            if (addTime === numberLimit2) {
+                addTime = 0;
+                time.innerHTML = "00";
+            }
+        }, 500);
+    });
+}
+
+// Decrement the time by 1 by clicking on a button
+function less (idClick, lessTime, numberLimit1, numberLimit2, time, limit, limit2 ) {
+    document.getElementById(idClick).addEventListener("click", function () {
+        setTimeout(function () {
+            if (lessTime < 11) {
+                time.innerHTML = "0" + (lessTime -= 1);
+            }
+            else if (numberLimit1 >= lessTime <= numberLimit2) {
+                time.innerHTML = (lessTime -= 1);
+            }
+
+            if (lessTime === -1) {
+                lessTime = limit;
+                time.innerHTML = limit2;
+            }
+        }, 500);
+    });
+}
